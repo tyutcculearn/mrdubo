@@ -10,7 +10,7 @@ $article_id=$_GET['article_id'];
 define('MYSQL_HOST','localhost:3307');
 define('MYSQL_USER','root');
 define('MYSQL_PW','db593607007');
-$conn =  mysql_connect(MYSQL_HOST,MYSQL_USER,MYSQL_PW);
+$conn =  mysql_connect("$MYSQL_HOST","$MYSQL_USER","$MYSQL_PW");
 if(!$conn){
     echo ('can not connect db');
 }

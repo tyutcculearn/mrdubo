@@ -51,21 +51,22 @@ $(document).ready(function(){
 
         var d = $("#loginform").serializeArray();
         console.log(d);
-        // $.post("./login.php",d,function(data){
-        //
-        //     if(data == 1)
-        //     {
-        //         alert("登陆成功");
-        //         window.location.href="./learn-index.php";
-        //     }
-        //     else if(data != 1)
-        //     {
-        //         $("#error2").html(data);
-        //
-        //     }
-        //
-        //
-        // });
+        $.post("./login.php",d,function(data){
+
+            if(data == 1)
+            {
+                alert("登陆成功");
+                window.location.href="./learn-index.php";
+                
+            }
+            else if(data != 1)
+            {
+                $("#error2").html(data);
+
+            }
+
+
+        });
     });
 });
 

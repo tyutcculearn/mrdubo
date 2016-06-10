@@ -8,10 +8,11 @@
 
 $article_id=$_POST['article_id'];
 
-define('MYSQL_HOST','localhost:3306');
-define('MYSQL_USER','root');
-define('MYSQL_PW','db593607007');
-$conn =  mysql_connect(MYSQL_HOST,MYSQL_USER,MYSQL_PW);
+$config=include 'config.php';
+$MYSQL_HOST=$config['MYSQL_HOST'];
+$MYSQL_USER=$config['MYSQL_USER'];
+$MYSQL_PW=$config['MYSQL_PW'];
+$conn =  mysql_connect("$MYSQL_HOST","$MYSQL_USER","$MYSQL_PW");
 if(!$conn){
     echo ('can not connect db');
 }

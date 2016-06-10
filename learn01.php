@@ -149,12 +149,14 @@ session_start();
       <!-- START THE FEATURETTES -->
 
       <?php
-      define('MYSQL_HOST','localhost:3306');
-      define('MYSQL_USER','root');
-      define('MYSQL_PW','db593607007');
+      $config=include 'config.php';
+      $MYSQL_HOST=$config['MYSQL_HOST'];
+      $MYSQL_USER=$config['MYSQL_USER'];
+      $MYSQL_PW=$config['MYSQL_PW'];
+      $conn =  mysql_connect("$MYSQL_HOST","$MYSQL_USER","$MYSQL_PW");
       $course = "select * from course where time='大一上'";
 
-      $conn =  mysql_connect(MYSQL_HOST,MYSQL_USER,MYSQL_PW);
+      
       if(!$conn){
         echo ('can not connect db');
       }
