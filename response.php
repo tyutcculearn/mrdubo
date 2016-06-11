@@ -30,7 +30,7 @@ mysql_query("set names utf8");
 $result= mysql_query($select);
 $row = mysql_fetch_array($result);
 
-$select_name="select name from user where id=$user_id";
+$select_name="select * from user where id=$user_id";
 mysql_query("set names utf8");
 $result_name= mysql_query($select_name);
 $row_name = mysql_fetch_array($result_name);
@@ -45,6 +45,25 @@ if($row_own[user_id]==$user_id){
 }
 else{
     $bool=0;
+}
+
+if($row[vip]==1){
+    $article_vip=1;
+}
+else{
+    $article_vip=0;
+}
+if($row_name[vip]==1){
+    $user_vip=1;
+}
+else{
+    $user_vip=0;
+}
+if($user_id==""){
+    echo "<script>alert('请登陆后查看！');location.href='learn-index.php';</script>";
+}
+if($article_vip==1&&$user_vip==0){
+    echo "<script>location.href='vip.php';</script>";
 }
 ?>
 

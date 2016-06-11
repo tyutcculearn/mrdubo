@@ -34,56 +34,39 @@ session_start();
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class=""><a href="#">logout</a></li>
-                <li role="presentation" class="active"><a href="#">new</a></li>
+
+                <li role="presentation" class="active"><a href="index.php">返回</a></li>
 
             </ul>
         </nav>
-        <h3 class="text-muted">Mrdubo</h3>
+        <h3 class="text-muted">Mrdubo </h3>
     </div>
 
 
-
-    <div class="jumbotron">
-        <img src="images/java.jpg" style="width: 200px;height: 300px;">
-
-        <div style="float: right;margin-right: 250px">
-            <h2>123</h2>
-            <h3>123</h3>
-            <h3>123</h3>
-            <h3>123</h3>
-        </div>
+<div class="row">
+    <div class="col-lg-6">
+        <img src="images/pay.jpg"" >
 
     </div>
 
-
-
-
-
-    <div class="row marketing">
-        <div class="col-lg-6 col-lg-offset-1">
-            <div>
-                <img src="images/bo.png" style="width: 30px;float: left">
-                <h2>title1</h2>
-                <p>message.</p>
-            </div>
-            <h2>title1</h2>
-            <p>message.</p>
-
-            <h2>title1</h2>
-            <p>message.</p>
-        </div>
-
-        <div class="col-lg-12">
-            <h2>title1</h2>
-            <p>message.</p>
-
-            <h2>title1</h2>
-            <p>message.</p>
-
-
+    <div class="col-lg-6">
+        <div>
+            <h2 style="color: red">此文章为精选文章</h2>
+            <h2 style="color: red">捐助15元成为VIP查看</h2>
+            <h4>因网站购买服务器和域名成本过高</h4>
+            <h4>希望可以通过捐助维持网站的维护</h4>
+            <h4>感谢您的捐助,网站因为您的捐助变得更好</h4><br>
+            <h4>扫描旁边支付宝二维码完成捐助</h4>
         </div>
     </div>
+
+</div>
+
+
+
+
+
+
 
     <footer class="footer">
         <p>&copy; dubo 2016</p>
