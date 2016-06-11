@@ -18,8 +18,8 @@ if(!$conn){
 }
 
 mysql_select_db('mrdubo');
-$mes="select Response.*,user.Name from Response left join user 
-	on Response.user_id = user.id where article_id='$article_id' order by Response.timestamp desc";
+$mes="select response.*,user.name from response left join user 
+	on response.user_id = user.id where article_id='$article_id' order by response.timestamp desc";
 mysql_query("set names utf8");
 $result=mysql_query($mes);
 $ans = "";

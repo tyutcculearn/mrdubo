@@ -1,3 +1,16 @@
+<?php
+session_start();
+if($_SESSION['id']!="") {
+
+}
+
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -42,19 +55,31 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 
-                <li class="dropdown active">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">年级 <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="learn01.php">大一新生</a></li>
-                    <li><a href="learn02.html">大二</a></li>
-                    <li><a href="learn03.html">大三老肉</a></li>
-                    <li role="separator" class="divider"></li>
-
-                  </ul>
-                </li>
+<!--                <li class="dropdown active">-->
+<!--                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">年级 <span class="caret"></span></a>-->
+<!--                  <ul class="dropdown-menu">-->
+<!--                    <li><a href="learn01.php">大一新生</a></li>-->
+<!--                    <li><a href="learn02.html">大二</a></li>-->
+<!--                    <li><a href="learn03.html">大三老肉</a></li>-->
+<!--                    <li role="separator" class="divider"></li>-->
+<!---->
+<!--                  </ul>-->
+<!--                </li>-->
                 
                 <!--<li><a href="daohang.html">导航页</a></li>-->
-                <li><a href="#contact" data-toggle="modal" data-target="#myModal2" >登陆</a></li>
+
+                <?php
+                if($_SESSION['id']!="") {
+                  echo "<li><a href=\"login.php?clear=1\">注销</a></li>";
+                }
+
+                else{
+                  echo "<li><a href=\"#contact\" data-toggle=\"modal\" data-target=\"#myModal2\" >登陆</a></li>";
+                }
+                ?>
+
+
+
                 <li><a href="#contact" data-toggle="modal" data-target="#myModal" id="">注册</a></li>
 
 
@@ -198,8 +223,8 @@
           <img class="img-circle" src="images/one.png" alt="Generic placeholder image" width="150" height="150">
           <h2>大一新生</h2>
           <p>作为一名大一新生，开始好好享受享受大学的快乐吧，不要耽误课程就好，学习好高数和专业课，剩下就可以享受大学的时光了.</p>
-                    <p><a class="btn btn-lg btn-primary" href="learn01.php" role="button">上学期</a> 
-                    <a class="btn btn-lg btn-primary" href="learn12.html" role="button">下学期</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="learn.php?grade=11" role="button">上学期</a>
+                    <a class="btn btn-lg btn-primary" href="learn.php?grade=12" role="button">下学期</a></p>
 
         </div><!-- /.col-lg-4 -->
 
@@ -207,8 +232,8 @@
           <img class="img-circle" src="images/two.png" alt="Generic placeholder image" width="150" height="150">
           <h2>大二同学</h2>
           <p>作为大二学生，开始接触专业，学习新的重要语言java，寻找一个自己喜欢的方向，突出发展，同时不可落下其他方向的学习.</p>
-           <p><a class="btn btn-lg btn-primary" href="learn02.html" role="button">上学期</a> 
-                    <a class="btn btn-lg btn-primary" href="learn22.html" role="button">下学期</a></p>
+           <p><a class="btn btn-lg btn-primary" href="learn.php?grade=21" role="button">上学期</a>
+                    <a class="btn btn-lg btn-primary" href="learn.php?grade=22" role="button">下学期</a></p>
             
         </div><!-- /.col-lg-4 -->
 
@@ -216,8 +241,8 @@
           <img class="img-circle" src="images/threes.png" alt="Generic placeholder image" width="150" height="150">
           <h2>大三老肉</h2></br>
           <p>在考试前2天的晚上，我会发布热门复习资料欢迎访问.</p></br>
-                     <p><a class="btn btn-lg btn-primary" href="learn03.html" role="button">上学期</a> 
-                    <a class="btn btn-lg btn-primary" href="learn32.html" role="button">下学期</a></p>
+                     <p><a class="btn btn-lg btn-primary" href="learn.php?grade=31" role="button">上学期</a>
+                    <a class="btn btn-lg btn-primary" href="learn.php?grade=32" role="button">下学期</a></p>
 
         </div><!-- /.col-lg-4 -->
         

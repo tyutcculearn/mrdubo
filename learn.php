@@ -1,3 +1,30 @@
+<?php
+session_start();
+
+$grade=$_GET['grade'];
+if($grade==11){
+  $time=大一上;
+}
+else if($grade==12){
+  $time=大一下;
+}
+else if($grade==21){
+  $time=大二上;
+}
+else if($grade==22){
+  $time=大二下;
+}
+else if($grade==31){
+  $time=大三上;
+}
+else if($grade==32){
+  $time=大三下;
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -19,6 +46,7 @@
     <script src="js/ie-emulation-modes-warning.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/myjs.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -47,22 +75,22 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                
-                <li class="dropdown active">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">年级 <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="learn01.php">大一新生</a></li>
-                    <li><a href="learn02.html">大二</a></li>
-                    <li><a href="#">大三老肉</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">分隔</li>
-                    <li><a href="#">书籍</a></li>
-                    <li><a href="#">软件</a></li>
-                  </ul>
-                </li>
-                
-                <li><a href="daohang.html">导航页</a></li>
-                <li><a href="#contact">About web---暂无</a></li>
+
+                <?php
+                if($_SESSION['id']!="") {
+                  echo "<li><a href=\"login.php?clear=1\">注销</a></li>";
+                }
+
+                else{
+                  echo "<li><a href=\"#contact\" data-toggle=\"modal\" data-target=\"#myModal2\" >登陆</a></li>";
+                }
+                ?>
+
+
+
+                <li><a href="#contact" data-toggle="modal" data-target="#myModal" id="">注册</a></li>
+
+
               </ul>
             </div>
           </div>
@@ -90,6 +118,7 @@
               <p>波波资源分享网站是杜波制作的一个分享资源的网站，主要面对是软件学院的学生，提供了大概覆盖了大一到大二所学习课程的资料，分享途径主要是通过百度云盘进行分享.</br>
               9月21日更新第一版，会不断更新ing</p>
               <p><a class="btn btn-lg btn-primary" href="#portfolio" role="button" id="portfolio-link" class="skel-panels-ignoreHref">开始学习吧</a></p>
+              
             </div>
           </div>
         </div>
@@ -134,71 +163,84 @@
 
     <div class="container marketing">
 
+      <!-- Three columns of text below the carousel -->
+      <section id="portfolio" class="one">
 
-
+      </section>
 
       <!-- START THE FEATURETTES -->
-<section id="portfolio" class="one">
-<br>
-      <h1>2016波波祝大家新年快乐。</h1>
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">如果你喜欢请拿出支付宝扫一扫旁边的二维码，支持一下我的网站。<span class="text-muted"></span></h2>
-          <p class="lead">bobo资源分享网站也已经运行了半年。从一开始的空白。到现在逐渐丰富了资源，基本包含了大一到大三几乎全部的学习资源。
-          </p>
-          
-        </div>
 
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" src="images/pay.jpg" alt="Generic placeholder image">
-        </div>
-      </div> 
-</section>
-      <hr class="featurette-divider">
-          <h1>c++面向对象程序设计</h1>
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">基础的专业课需要好好学习<span class="text-muted"></span></h2>
-          <p class="lead">是面向对象的语言，也是java的基础</p>
-          <p><a class="btn btn-default" href="http://pan.baidu.com/s/1qWVs7Qs" class="thumbnail" role="button">百度密码j7pg   &raquo; </a></p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" src="images/c++.png" alt="Generic placeholder image" width="50%">
-        </div>
-      </div> 
-      <hr class="featurette-divider">
-          <h1>大学物理</h1>
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">大学物理对高中物理的加深<span class="text-muted"></span></h2>
-          <p class="lead">学习较为难，需要上课好好听</p>
-          <p><a class="btn btn-default" href="http://pan.baidu.com/s/1pK1jeyB" class="thumbnail" role="button">百度密码6usr   &raquo; </a></p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" src="images/dw.png" alt="Generic placeholder image" width="50%">
-        </div>
-      </div> 
-      <hr class="featurette-divider">
-          <h1>线性代数</h1>
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">线性代数<span class="text-muted"></span></h2>
-          <p class="lead">基础公共课，数学知识的考验</p>
-          <p><a class="btn btn-default" href="http://pan.baidu.com/s/1pKrFthD" class="thumbnail" role="button">百度密码ciy7  &raquo; </a></p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" src="images/xd.png" alt="Generic placeholder image" width="40%">
-        </div>
-      </div> 
+      <?php
+      $config=include 'config.php';
+      $MYSQL_HOST=$config['MYSQL_HOST'];
+      $MYSQL_USER=$config['MYSQL_USER'];
+      $MYSQL_PW=$config['MYSQL_PW'];
+      $conn =  mysql_connect("$MYSQL_HOST","$MYSQL_USER","$MYSQL_PW");
+      $course = "select * from course where time='$time'";
+
       
-      </div> 
-       
-      <hr class="featurette-divider">
+      if(!$conn){
+        echo ('can not connect db');
+      }
+      mysql_select_db('mrdubo');
+      mysql_query("set names utf8");
+      $result_course = mysql_query($course);
+
+      while($row1 = mysql_fetch_array($result_course)) {
+        echo "      <hr class=\"featurette-divider\">
+
+
+          <h1>".$row1[name]."</h1>
+      <div class=\"row featurette\">
+        <div class=\"col-md-5 \">
+          <img class=\"featurette-image img-responsive center-block\" src=\"images/".$row1[img]."\" width=\"200px\">
+        </div>
+        <div class=\"col-md-7 \">
+            <button style=\"float: right\" class=\"btn btn-success\">more</button>
+             <ul style=\"float: left\" class=\"nav\">";
+        $article_vip="select * from article where course_id=".$row1[id]." and vip=1 limit 2";
+        $article="select * from article where course_id=".$row1[id]." and vip=0 limit 3";
+        mysql_query("set names utf8");
+
+        $result_article_vip = mysql_query($article_vip);
+        $result_article = mysql_query($article);
+        $number=0;
+        while ($row2=mysql_fetch_array($result_article_vip)){
+          echo"
             
+            <li>
+          <a href=\"response.php?article_id=".$row2['id']."\" style=\"font-size: 25px;color: red\">$row2[title]</a>
+            </li>";
+          $number=$number+1;
+        }
+        while ($row3=mysql_fetch_array($result_article)){
+          echo"
+            
+            <li>
+          <a href=\"response.php?article_id=".$row3['id']."\" style=\"font-size: 25px;\">$row3[title]</a>
+            </li>";
+          $number=$number+1;
+        }
+         echo"</ul>
+        </div>
+      </div>";
+
+
+      }
+      ?>
+
+
+
+
+
+
+
+
+
+
+
       <hr class="featurette-divider">
 
-     
-      
       <!-- /END THE FEATURETTES -->
 
 
@@ -216,11 +258,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../../assets/js/vendor/holder.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
   </body>
 </html>

@@ -39,11 +39,12 @@ $(document).ready(function(){
                 var list = "";
                 for(var i = 0; i < myjson.length; i++)
                 {
-                    list = list +"<tr class=\"col-md-11\" style=\"margin-left: 5%\"><td class=\"col-md-1\">"+myjson[i].Name+"</td><td class=\"col-md-8\">"+myjson[i].message+"</td><td class=\"col-md-2\">"+myjson[i].timestamp+"</td></tr>";
+                    list = list +"<tr><td>"+myjson[i].name+"</td><td>"+myjson[i].message+"</td><td>"+myjson[i].timestamp+"</td></tr>";
                 }
                 $("#responsetable").html(list);
+                console.log(list);
             });
-            $("#text33").val("");
+
 
         });
     });

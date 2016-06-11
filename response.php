@@ -13,9 +13,10 @@ session_start();
 $user_id=$_SESSION['id'];
 
 $article_id=$_GET['article_id'];
-define('MYSQL_HOST','localhost:3307');
-define('MYSQL_USER','root');
-define('MYSQL_PW','db593607007');
+$config=include 'config.php';
+$MYSQL_HOST=$config['MYSQL_HOST'];
+$MYSQL_USER=$config['MYSQL_USER'];
+$MYSQL_PW=$config['MYSQL_PW'];
 $conn =  mysql_connect("$MYSQL_HOST","$MYSQL_USER","$MYSQL_PW");
 if(!$conn){
     echo ('can not connect db');
@@ -27,7 +28,12 @@ mysql_select_db('mrdubo');
 $select="select * from article where id=$article_id";
 mysql_query("set names utf8");
 $result= mysql_query($select);
-$row = mysql_fetch_array($result)
+$row = mysql_fetch_array($result);
+
+$select_name="select name from user where id=$user_id";
+mysql_query("set names utf8");
+$result_name= mysql_query($select_name);
+$row_name = mysql_fetch_array($result_name);
 ?>
 
 <!DOCTYPE html>
@@ -60,6 +66,7 @@ $row = mysql_fetch_array($result)
             <ul class="nav nav-pills pull-right">
                 <li role="presentation" class="active"><a href="#">修改</a></li>
                 <li role="presentation" class="active"><a href="#">删除</a></li>
+                
 
             </ul>
         </nav>
@@ -84,24 +91,36 @@ $row = mysql_fetch_array($result)
 
     <div class="row marketing">
        <div class="col-lg-12">
-           <table class="table table-striped">
+           <table class="table table-striped" >
                <thead>
                 <th>name</th>
                 <th>message</th>
                 <th>time</th>
                </thead>
-               <tbody></tbody>
-                <tr>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                </tr>
+               <tbody id="responsetable">
+               <?php
+               $select_response="select response.*,user.name from response left join user 
+	on response.user_id = user.id where article_id='$article_id' order by response.timestamp desc";
+               mysql_query("set names utf8");
+               $result2= mysql_query($select_response);
+               while($row2 = mysql_fetch_array($result2)) {
+                   echo"
+                   <tr>
+                    <td> ".$row2[name]."   </td>
+                    <td>  ".$row2[message]."  </td>
+                    <td>  ".$row2[timestamp]."  </td>
+                   </tr>";
+               }
+               ?>
 
+               </tbody>
            </table>
        </div>
     </div>
     <div class="row marketing">
-        <h5>username:</h5>
+        <h4 style="float: left"><?php
+            echo $row_name[name];
+            ?>:</h4>
         <form method="post" id="responseform">
             <?php
             echo "<input type=\"hidden\" value=\"".$article_id."\" name=\"article_id\"> 
