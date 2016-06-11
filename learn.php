@@ -98,7 +98,70 @@ else if($grade==32){
 
       </div>
     </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">感谢您的注册</h4>
+          </div>
+          <div class="modal-body">
+            <form method="post" id="registerform" >
+              <div class="form-group">
+                <label>UserName</label><br/>
+                <input type="text" class="form-control" name="username" placeholder="UserName" id="exampleInputName2">
+              </div>
+              <div class="form-group">
+                <label>Email</label><br/>
+                <input type="text" class="form-control" name="Email" placeholder="Email">
+              </div>
 
+              <div class="form-group">
+                <label>PassWord</label><br/>
+                <input type="password" class="form-control" name="PassWord" placeholder="PassWord">
+              </div>
+              <div class="form-group">
+                <label>PassWordAgain</label><br/>
+                <input type="password" class="form-control" name="PassWordAgain" placeholder="PassWordAgain">
+              </div>
+              <div id="error"></div>
+              <a href="learn-index.php"> <input type="button" class="btn btn-lg btn-danger" value="cancel"></a>
+              <input type="button" class="btn btn-lg btn-success" value="register" id="register">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel2">欢迎回来</h4>
+          </div>
+          <div class="modal-body">
+            <form method="post" id="loginform" >
+
+              <div class="form-group">
+                <label>Email</label><br/>
+                <input type="text" class="form-control" name="Email" placeholder="Email">
+              </div>
+
+              <div class="form-group">
+                <label>PassWord</label><br/>
+                <input type="password" class="form-control" name="PassWord" placeholder="PassWord">
+              </div>
+
+              <div id="error2"></div>
+              <a href="login.php"> <input type="button" class="btn btn-lg btn-danger" value="cancel"></a>
+              <input type="button" class="btn btn-lg btn-success" value="login" id="login">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     <!-- Carousel
     ================================================== -->

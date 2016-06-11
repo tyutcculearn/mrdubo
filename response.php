@@ -34,6 +34,18 @@ $select_name="select name from user where id=$user_id";
 mysql_query("set names utf8");
 $result_name= mysql_query($select_name);
 $row_name = mysql_fetch_array($result_name);
+
+$own="select user_id from article where id=$article_id";
+mysql_query("set names utf8");
+$result_own= mysql_query($own);
+$row_own = mysql_fetch_array($result_own);
+if($row_own[user_id]==$user_id){
+    $bool=1;
+
+}
+else{
+    $bool=0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,10 +76,13 @@ $row_name = mysql_fetch_array($result_name);
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#">修改</a></li>
-                <li role="presentation" class="active"><a href="#">删除</a></li>
-                
+                <?php
 
+                if($bool){
+                echo "<li role=\"presentation\" class=\"active\"><a href=\"#\">修改</a></li>
+                <li role=\"presentation\" class=\"active\"><a href=\"delete.php?article_id=".$article_id."\">删除</a></li>";
+                }
+                ?>
             </ul>
         </nav>
         <h3 class="text-muted">Mrdubo</h3>
@@ -117,25 +132,37 @@ $row_name = mysql_fetch_array($result_name);
            </table>
        </div>
     </div>
-    <div class="row marketing">
-        <h4 style="float: left"><?php
-            echo $row_name[name];
-            ?>:</h4>
-        <form method="post" id="responseform">
-            <?php
-            echo "<input type=\"hidden\" value=\"".$article_id."\" name=\"article_id\"> 
-            <input type=\"hidden\" value=\"".$user_id."\" name=\"user_id\"> 
-            
-            
-            <input class=\"form-control\" type=\"text\" style=\"width: 300px;float: left\" name=\"content\">
 
-            <input type=\"button\" class=\"btn btn-success\" value=\"response\" id=\"response\" >";
-            ?>
+    <?php
 
+    if($user_id!=""){
+        echo"
+            <div class=\"row marketing\">
+                <h4 style=\"float:left \">";
+                    echo $row_name[name];
+                echo "    :</h4>
+                <form method=\"post\" id=\"responseform\">
+                    
+                    
+                   <input type=\"hidden\" value=\"".$article_id."\" name=\"article_id\"> 
+                    <input type=\"hidden\" value=\"".$user_id."\" name=\"user_id\"> 
+                    
+                    
+                    <input class=\"form-control\" type=\"text\" style=\"width: 300px;float: left\" name=\"content\">
+        
+                    <input type=\"button\" class=\"btn btn-success\" value=\"response\" id=\"response\" >
+                    
+        
+        
+                </form>
+        
+            </div>";
+    }
+    else{
+        echo"";
+    }
 
-        </form>
-
-    </div>
+    ?>
     <footer class="footer">
         <p>&copy; dubo 2016</p>
     </footer>
