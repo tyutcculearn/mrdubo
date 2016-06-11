@@ -266,7 +266,7 @@ else if($grade==32){
           <img class=\"featurette-image img-responsive center-block\" src=\"images/".$row1[img]."\" width=\"200px\">
         </div>
         <div class=\"col-md-7 \">
-            <button style=\"float: right\" class=\"btn btn-success\">more</button>
+             <a href='./course.php?course_id=".$row1["id"]."'><button style=\"float: right\" class=\"btn btn-success\" >more</button></a>
              <ul style=\"float: left\" class=\"nav\">";
         $article_vip="select * from article where course_id=".$row1[id]." and vip=1 limit 2";
         $article="select * from article where course_id=".$row1[id]." and vip=0 limit 3";
@@ -279,7 +279,7 @@ else if($grade==32){
           echo"
             
             <li>
-          <a href=\"response.php?article_id=".$row2['id']."\" style=\"font-size: 25px;color: red\">$row2[title]</a>
+          <a href=\"response.php?article_id=".$row2['id']."&course_id=".$row1["id"]."\" style=\"font-size: 25px;color: red\">$row2[title]</a>
             </li>";
           $number=$number+1;
         }
@@ -287,7 +287,7 @@ else if($grade==32){
           echo"
             
             <li>
-          <a href=\"response.php?article_id=".$row3['id']."\" style=\"font-size: 25px;\">$row3[title]</a>
+          <a href=\"response.php?article_id=".$row3['id']."&course_id=".$row1["id"]."\" style=\"font-size: 25px;\">$row3[title]</a>
             </li>";
           $number=$number+1;
         }

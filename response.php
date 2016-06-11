@@ -11,7 +11,7 @@ session_start();
 //    exit;//终止程序继续执行
 //}
 $user_id=$_SESSION['id'];
-
+$course_id=$_GET['course_id'];
 $article_id=$_GET['article_id'];
 $config=include 'config.php';
 $MYSQL_HOST=$config['MYSQL_HOST'];
@@ -88,6 +88,7 @@ if($article_vip==1&&$user_vip==0){
     <!-- Custom styles for this template -->
     <link href="css/jumbotron-narrow.css" rel="stylesheet">
     <script src="js/myjs.js"></script>
+    <script src="js/course.js"></script>
 </head>
 
 <body>
@@ -99,9 +100,19 @@ if($article_vip==1&&$user_vip==0){
                 <?php
 
                 if($bool){
-                echo "<button type='button' class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">修改</button>
-                <button class=\"btn btn-warning\" href=\"delete.php?article_id=".$article_id."\">删除</button>";
+                echo "
+                    <form method='post' id='modiform' style='float: left'>
+                    <input type='hidden' value=$article_id name='article_id' id='article_id'>
+                    <button type='button' class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\" id='modi'>修改</button>
+                    </form>
+                    
+
+               
+
+                <a href=\"delete.php?article_id=".$article_id."\"><button class=\"btn btn-danger\" >删除</button></a> 
+                ";
                 }
+                echo"<a href=\"course.php?course_id=".$course_id."\"><button class=\"btn btn-warning\" >返回</button></a>";
                 ?>
 
 
@@ -111,22 +122,53 @@ if($article_vip==1&&$user_vip==0){
         <h3 class="text-muted">Mrdubo</h3>
     </div>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">修改文章</h4>
+    <div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" style="background-color: white;border-radius: 10px">
+            <div class="modal-header" style="margin-bottom: 3%">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-align: center;font-family: 'Al Bayan'" id="title_modal">发表新文章</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom: 2%;margin-left: 2%">
+                    <form id="form_article">
+                        <div style="width: 70%;margin-left: 15%">
+                            <div style="margin-bottom: 5%">
+                                <label style="float: left;margin-right: 5%">标题</label>
+                                <input id="title" type="input" class="form-control" name="title" placeholder="Title" style="width: 70%;position: relative;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 10%">
+                                <label for="exampleInputEmail1" style="margin-right: 4%">内容</label>
+                                <button type="button" id="bvideo" class="btn btn-default btn-sm"  aria-label="Left Align"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span></button>
+                                <button type="button" id="Strong" class="btn btn-default btn-sm"  aria-label="Left Align"><span class="glyphicon glyphicon-bold" aria-hidden="true"></span></button>
+                                <button type="button" id="R" class="btn btn-danger btn-sm"  aria-label="Left Align"><span class="glyphicon glyphicon-font" aria-hidden="true"></span></button>
+                                <button type="button" id="G" class="btn btn-success btn-sm" aria-label="Left Align"><span class="glyphicon glyphicon-font" aria-hidden="true"></span></button>
+                                <div id="video" style="margin-top: 2%;  display: none;">
+                                    <div style="margin-right: 0px">
+                                        <p style="color: #3c3c3c;margin: 0;padding: 0;font-size: 14px">插入百度云盘网址:</p>
+                                    </div>
+                                    <div>
+                                        <input id="videoID" type="input" class="form-control" name="videoID" placeholder="百度云盘URL" style="width: 60%;float: left;height: 5%;font-size: 10px;margin-right: 2%;margin-top: 1px">
+                                    </div>
+                                    <div>
+                                        <button type="button" id="insert_video" class="btn btn-default btn-sm">Insert</button>
+                                    </div>
+                                </div>
+                                <textarea class="form-control" id="content_code" name="content" placeholder="Content" rows="10" style="margin-top: 5%"></textarea>
+                                <div id="content_html" name="content_html" style="margin-top: 2%; margin-bottom: 2%"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default" data-dismiss="modal" id="cancel">取消</button>
+                                <button type="button" id="updata" class="btn btn-success">修改</button>
+                                <?php
+                                echo "<input type=\"hidden\" name=\"article_id\" value=\"".$article_id."\"\>";
+                                echo "<input type=\"hidden\" name=\"vip\" value=\"0\">";
+                                echo "<input type=\"hidden\" name=\"course_id\" id='course_id' value=\"".$_GET['course_id']."\">";
+                                ?>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <form>
-                    <div class="modal-body">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">修改</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -134,8 +176,25 @@ if($article_vip==1&&$user_vip==0){
 
     <div class="jumbotron">
         <?php
-        echo"<h2>".$row[title]."</h2>";
-        echo "<p>".$row[content]."</p>";
+
+        $row[content] = str_replace("<R>","<span style=\"color:red;\">",$row[content]);
+        $row[content] = str_replace("</R>","</span>",$row[content]);
+        $row[content] = str_replace("<G>","<span style=\"color:green;\">",$row[content]);
+        $row[content] = str_replace("</G>","</span>",$row[content]);
+
+        $row[content] = str_replace("<YUN>","<a href='",$row[content]);
+        $row[content] = str_replace("</YUN>","'>百度云地址</a>",$row[content]);
+        $row['content'] = str_replace("\n","<br>",$row['content']);
+
+        ?>
+
+        <?php
+        echo"<h2 id=\"updatatitle\">".$row[title]."</h2>";
+        echo "<p id=\"updatacontent\">".$row[content]."</p>";
+
+
+
+
         ?>
 
 

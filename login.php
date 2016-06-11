@@ -4,7 +4,7 @@ extract($_POST);
 $error =1;
 $bool1=$Email&&$PassWord;
 $bool2=!isset($Email)&&!isset($PassWord);
-if(isset($_GET['clear']) && $_GET['clear']){
+if(isset($_GET['clear']) && $_GET['clear']==1){
     session_destroy();
     echo "<script>alert('logout succeed');location.href=\"learn-index.php\";</script>";
 }

@@ -69,7 +69,78 @@ $(document).ready(function(){
 
         });
     });
+    $("#modi").click(function(){
+        var article_id=$("#article_id").val();
+        console.log(article_id);
+        $.post("./articletable.php",{article_id: $("#article_id").val()},function(data){
+            console.log(data);
+            var myjson = eval('(' + data + ')');
+
+            console.log(myjson.length);
+            console.log(myjson[0].title);
+            $("#title").val(myjson[0].title);
+            $("#content_code").val(myjson[0].content);
+        });
+
+
+
+
+
+    });
+    $("#updata").click(function(){
+        var d = $("#form_article").serializeArray();
+        console.log(d);
+        $.post("./updataarticle.php",d,function(data){
+            if(data ==1)
+            {
+                alert("修改成功");
+                $.post("./articletable.php",{article_id: $("#article_id").val()},function(data){
+                    console.log("new");
+                    console.log(data);
+
+                    var myjson = eval('(' + data + ')');
+                    var a=myjson[0].title;
+                    var b=myjson[0].content;
+                    var last_update=myjson[0].last_update
+                    console.log(b);
+                    var text1=a;
+
+                    var text2="<div style=\"font-size:15px\" id='updatacontent'>"+b+"</div>";
+
+                    $("#updatatitle").html(text1);
+
+                    $("#updatacontent").html($.html2(text2));
+
+                });
+
+                $('#myModal').modal('hide')
+            }
+        });
+
+
+
+
+
+    });
+
+    $.extend({
+        html2: function (text) {
+            text = text.replace(/<R>/g, "<div style=\"color:red;\">");
+            text = text.replace(/<\/R>/g, "</div>");
+            text = text.replace(/<B>/g, "<div style=\"color:blue;\">");
+            text = text.replace(/<\/B>/g, "</div>");
+            text = text.replace(/<G>/g, "<div style=\"color:green;\">");
+            text = text.replace(/<\/G>/g, "</div>");
+            text = text.replace(/<YUN>/g, "<a href='");
+
+            text = text.replace(/<\/YUN>/g, "'>百度云地址</a>");
+            text = text.replace(/\n/g, "<br>");
+            return text;
+        }
+    })
 });
+
+
 
 
 
