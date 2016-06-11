@@ -76,19 +76,7 @@ else if($grade==32){
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
 
-                <?php
-                if($_SESSION['id']!="") {
-                  echo "<li><a href=\"login.php?clear=1\">注销</a></li>";
-                }
 
-                else{
-                  echo "<li><a href=\"#contact\" data-toggle=\"modal\" data-target=\"#myModal2\" >登陆</a></li>";
-                }
-                ?>
-
-
-
-                <li><a href="#contact" data-toggle="modal" data-target="#myModal" id="">注册</a></li>
 
 
               </ul>
@@ -180,7 +168,26 @@ else if($grade==32){
               <h1>欢迎来到波波资源分享.</h1>
               <p>波波资源分享网站是杜波制作的一个分享资源的网站，主要面对是软件学院的学生，提供了大概覆盖了大一到大二所学习课程的资料，分享途径主要是通过百度云盘进行分享.</br>
               9月21日更新第一版，会不断更新ing</p>
-              <p><a class="btn btn-lg btn-primary" href="#portfolio" role="button" id="portfolio-link" class="skel-panels-ignoreHref">开始学习吧</a></p>
+
+
+              <?php
+              if($_SESSION['id']!="") {
+                echo"<p>";
+                echo "<a class=\"btn btn-lg btn-primary\" href=\"login.php?clear=1\">注销</a>";
+              }
+
+              else{
+                echo "<a class='btn btn-lg btn-primary' href=\"#contact\" data-toggle=\"modal\" data-target=\"#myModal2\" >登陆</a>
+                    <a class=\"btn btn-lg btn-primary\" href=\"#contact\" data-toggle=\"modal\" data-target=\"#myModal\" id=\"\">注册</a>";
+              }
+              ?>
+
+
+
+
+
+
+              </p>
               
             </div>
           </div>

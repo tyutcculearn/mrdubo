@@ -55,14 +55,15 @@ else{
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <meta name="description" content="bobofenxiang">
+    <meta name="author" content="DuBo">
+    <link rel="icon" href="images/bo.png">
 
-    <title>Narrow Jumbotron Template for Bootstrap</title>
+    <title>MR.DuBo</title>
 
     <!-- Bootstrap core CSS -->
     <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -79,15 +80,37 @@ else{
                 <?php
 
                 if($bool){
-                echo "<li role=\"presentation\" class=\"active\"><a href=\"#\">修改</a></li>
-                <li role=\"presentation\" class=\"active\"><a href=\"delete.php?article_id=".$article_id."\">删除</a></li>";
+                echo "<button type='button' class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">修改</button>
+                <button class=\"btn btn-warning\" href=\"delete.php?article_id=".$article_id."\">删除</button>";
                 }
                 ?>
+
+
+
             </ul>
         </nav>
         <h3 class="text-muted">Mrdubo</h3>
     </div>
 
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">修改文章</h4>
+                </div>
+                <form>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">修改</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
     <div class="jumbotron">

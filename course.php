@@ -27,9 +27,11 @@ $select="select * from article where id=$article_id";
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../../favicon.ico">
+    <meta name="description" content="bobofenxiang">
+    <meta name="author" content="DuBo">
+    <link rel="icon" href="images/bo.png">
 
-    <title>Narrow Jumbotron Template for Bootstrap</title>
+    <title>MR.DuBo</title>
     <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
