@@ -9,7 +9,7 @@
 return array(
     'MYSQL_HOST'=>'localhost:3307',
     'MYSQL_USER'=>'root',
-    'MYSQL_PW'=>'db593607007',
+    'MYSQL_PW'=>'',
     
 
 
