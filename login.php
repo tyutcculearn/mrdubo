@@ -1,14 +1,14 @@
 <?php
 session_start();
 extract($_POST);
-$error =1;
+$error ="";
 $bool1=$Email&&$PassWord;
 $bool2=!isset($Email)&&!isset($PassWord);
 if(isset($_GET['clear']) && $_GET['clear']==1){
     session_destroy();
     echo "<script>alert('logout succeed');location.href=\"learn-index.php\";</script>";
 }
-    
+
 
 if($bool1){
     $config=include 'config.php';
@@ -44,5 +44,5 @@ else if($bool2){
 else{
     $error='请输入所有的栏位';
 }
-echo $error;
+echo $error
 ?>

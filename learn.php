@@ -142,7 +142,7 @@ else if($grade==32){
               </div>
 
               <div id="error2"></div>
-              <a href="login.php"> <input type="button" class="btn btn-lg btn-danger" value="cancel"></a>
+              <a href="learn-index.php"> <input type="button" class="btn btn-lg btn-danger" value="cancel"></a>
               <input type="button" class="btn btn-lg btn-success" value="login" id="login">
             </form>
           </div>

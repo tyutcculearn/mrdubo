@@ -11,7 +11,11 @@ $date=date("Y-m-d H:i:s");
 $article_id=$_POST['article_id'];
 $user_id=$_POST['user_id'];
 $content=$_POST['content'];
-
+if($content==""){
+    echo $data;
+}
+else{
+    $data=2;
 $config=include 'config.php';
 $MYSQL_HOST=$config['MYSQL_HOST'];
 $MYSQL_USER=$config['MYSQL_USER'];
@@ -27,3 +31,4 @@ $insert="insert into response (article_id,user_id,message,timestamp)VALUES ('$ar
 mysql_query("set names utf8");
 mysql_query($insert);
 echo $data;
+}

@@ -27,23 +27,31 @@ $(document).ready(function(){
     $("#response").click(function(){
 
         var d = $("#responseform").serializeArray();
-        console.log(d);
-        $.post("./addresponse.php",d,function(data){
 
-            $.post("./responsetable.php",d,function(data){
-                console.log("mydata");
-                console.log(data);
-                var myjson = eval('(' + data + ')');
-                console.log("myjson");
-                console.log(myjson);
-                var list = "";
-                for(var i = 0; i < myjson.length; i++)
-                {
-                    list = list +"<tr><td>"+myjson[i].name+"</td><td>"+myjson[i].message+"</td><td>"+myjson[i].timestamp+"</td></tr>";
-                }
-                $("#responsetable").html(list);
-                console.log(list);
-            });
+
+        $.post("./addresponse.php",d,function(data){
+            if(data==1){
+                alert("请输入回复内容");
+            }
+            else{
+                $.post("./responsetable.php",d,function(data){
+                    // console.log("mydata");
+                    // console.log(data);
+
+
+                    var myjson = eval('(' + data + ')');
+                    console.log("myjson");
+                    console.log(myjson);
+                    var list = "";
+                    for(var i = 0; i < myjson.length; i++)
+                    {
+                        list = list +"<tr><td>"+myjson[i].name+"</td><td>"+myjson[i].message+"</td><td>"+myjson[i].timestamp+"</td></tr>";
+                    }
+                    $("#responsetable").html(list);
+                    // console.log(list);
+
+                });
+            }
 
 
         });
@@ -54,13 +62,13 @@ $(document).ready(function(){
         console.log(d);
         $.post("./login.php",d,function(data){
 
-            if(data == 1)
+            if(data == "")
             {
                 alert("登陆成功");
                 window.location.href="./learn-index.php";
-                
+
             }
-            else if(data != 1)
+            else if(data != "")
             {
                 $("#error2").html(data);
 

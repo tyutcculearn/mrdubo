@@ -134,7 +134,7 @@ if($_SESSION['id']!="") {
               </div>
 
               <div id="error2"></div>
-              <a href="login.php"> <input type="button" class="btn btn-lg btn-danger" value="cancel"></a>
+              <a href="learn-index.php"> <input type="button" class="btn btn-lg btn-danger" value="cancel"></a>
               <input type="button" class="btn btn-lg btn-success" value="login" id="login">
             </form>
           </div>
@@ -158,7 +158,9 @@ if($_SESSION['id']!="") {
             <div class="carousel-caption">
               <h1>欢迎来到波波资源分享.</h1>
               <p>波波资源分享网站是杜波制作的一个分享资源的网站，主要面对是软件学院的学生，提供了大概覆盖了大一到大二所学习课程的资料，分享途径主要是通过百度云盘进行分享.</br>
-              9月21日更新第一版，会不断更新ing</p>
+              15年9月21日更新第一版，会不断更新</br>
+              在16年6月12日，在台湾中正大学交换期间更新第二版，添加后台的相关操作
+              </p>
 
 
 

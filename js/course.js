@@ -81,8 +81,7 @@ $(document).ready(function(){
             var value = change($("#content_code").val());
             function change (value)
             {
-                value = value.replace(/<YUN>/g,"(影片不提供预览)<br>(Video ID:");
-                value = value.replace(/<\/YUN>/g,")");
+
                 value = value.replace(/\n/g,"<br>");
                 value = value.replace(/<R>/g,"<span style=\"color:red;\">");
                 value = value.replace(/<\/R>/g,"</span>");

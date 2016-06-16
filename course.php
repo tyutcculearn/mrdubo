@@ -6,6 +6,7 @@
  * Time: 下午4:41
  */
 session_start();
+$user_id=$_SESSION['id'];
 $course_id=$_GET['course_id'];
 $config=include 'config.php';
 $MYSQL_HOST=$config['MYSQL_HOST'];
@@ -57,35 +58,42 @@ $row=mysql_fetch_array($res);
 <div class="container">
     <div class="header clearfix">
         <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class=""><a href="./login.php?clear=1">注销</a></li>
-                <button class='btn btn-primary' id='new' data-toggle="modal" data-target=".bs-example-modal-lg">
-                    <a style='color:white;text-decoration: none;'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 发表新文章</a>
+
+            <?php
+            if($user_id!=""){
+                echo"  <ul class=\"nav nav-pills pull-right\">
+                <li role=\"presentation\" class=\"\"><a href=\"./login.php?clear=1\">注销</a></li>
+                <button class='btn btn-primary' id='new' data-toggle=\"modal\" data-target=\".bs-example-modal-lg\">
+                    <a style='color:white;text-decoration: none;'><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> 发表新文章</a>
                 </button>
 
-            </ul>
+            </ul>";
+            }
+            ?>
         </nav>
         <h3 class="text-muted">Mrdubo</h3>
     </div>
 
-    <div class="jumbotron">
+    <div class="col-lg-6">
         <?php
         echo "
-        <img src='./images/".$row["img"]."' style='width: 200px;height: 300px;'>"?>
-
-        <div style="float: right;margin-right: 150px">
-            <?php
-            echo "
-            <h2>".$row['title']."</h2>
-            "?>
-            <?php
-            echo "
-            <h3>".$row['message']."</h3>
-            "?>
-        </div>
+        <img src='./images/".$row["img"]."' style='width: 200px;height: 300px;margin-right: 300px'>"?>
+    </div>
+    <div class="col-lg-6">
+        <?php
+        echo "
+        <h2>".$row['title']."</h2>
+        "?>
+        <?php
+        echo "
+        <h3>".$row['message']."</h3>
+        "?>
     </div>
 
 
+<div class="row marketing">
+
+</div>
 
 
 
@@ -108,15 +116,20 @@ $row=mysql_fetch_array($res);
             mysql_query("set names utf8");
             $res = mysql_query($select);
             while($row=mysql_fetch_array($res)){
+                $row[content] = str_replace("<YUN>http://pan.baidu.com/s/","<dsvsss",$row[content]);
+                $row[content] = str_replace("</YUN>",">百度云地址",$row[content]);
                 $content = substr($row['content'],0,100);
                 echo
-                "<a  style=\"color: red\" href='./response.php?article_id=".$row['id']."&course_id=".$course_id."'><h2>".$row['title']."</h2>
-                <div style='width:200px'>
-                <p>".$content."...</p></div></a>";
+                "<a  style=\"color: red\" href='./response.php?article_id=".$row['id']."&course_id=".$course_id."'>
+                <h2>".$row['title']."</h2>
+                
+                <div >".$content."...</div>
+                </a>
+                <br>";
             }
             ?>
         </div>
-
+    </div>
         <div class="row marketing">
             <div class="col-lg-12" id="article_normal">
                 <?php
@@ -136,10 +149,13 @@ $row=mysql_fetch_array($res);
                 mysql_query("set names utf8");
                 $res = mysql_query($select);
                 while($row=mysql_fetch_array($res)){
+                    $row[content] = str_replace("<YUN>http://pan.baidu.com/s/","<dsvsss",$row[content]);
+                    $row[content] = str_replace("</YUN>",">百度云地址",$row[content]);
                     $content = substr($row['content'],0,100);
+
                     echo
                         "<a  style=\"color: black\" href='./response.php?article_id=".$row['id']."&course_id=".$course_id."'><h2>".$row['title']."</h2>
-                <p>".$content."...</p></a>";
+                <div>".$content."...</div></a><br>";
                 }
                 ?>
             </div>
